@@ -1,0 +1,36 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:28:"public/Home/index/dlewm.html";i:1544516909;}*/ ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title><?php echo $config['webname']; ?>-二维码</title>
+		<link rel="stylesheet" href="/public/css/css.css" />
+		<script type="text/javascript" src="/public/js/jquery-1.12.3-min.js"></script>
+		<script type="text/javascript" src="/public/js/jquery.qrcode.min.js"></script>
+	</head>
+	<body style="background:#fff;">
+		<div class="erwm">
+			<div class="erwmNr">
+		    	<p id="dtewm"></p>
+			</div>
+		</div>
+		 <!--把下面的23行代码中的“index?id=70”替换成你后台同数值的数字 ZhanCsm.com-->
+		<script>
+			$(function() {
+				 var w = document.documentElement.scrollHeight
+				var w=window.parent.document.getElementsByClassName('layui-layer-content')[1].scrollHeight-30;
+				 $('.erwm').css('height',w);
+				 var urls= 'http://www.1ytaob.com/home/weixin/index?id=70&qrcode=<?php echo session("userid"); ?>';
+				 console.log(urls);
+				  $('#dtewm').qrcode(urls); 
+
+				$('.erwm').click(function() {
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+				})
+			})
+		</script>
+	</body>
+
+</html>

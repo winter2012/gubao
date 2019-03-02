@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{:C('system.web_name')}</title>
+    <meta name="description" content="{:C('system.web_key')}">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/public/simple/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/public/simple/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/public/simple/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/public/simple/assets/css/admin.css">
+    <link rel="stylesheet" href="/public/simple/assets/css/app.css">
+</head>
+<body data-type="generalComponents">
+    {include file="left" /}
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                {:C('system.web_name')}-系统管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="javascript:void(0)" class="am-icon-home">首页</a></li>
+                <li><a href="javascript:void(0)">会员中心</a></li>
+                <li class="am-active">微信零钱提现列表</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 微信零钱提现列表
+                    </div>
+               
+                </div>
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <!--<button type="button" id="addpid" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-form-group">
+                                <select data-am-selected="{btnSize: 'sm'}" id="sel">
+              <option value="-1">所有类别</option>
+              <option value="1">待审核</option>
+              <option value="2">审核成功</option>
+			  <option value="3">审核失败</option>
+            </select>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                                <input type="text" class="am-form-field">
+                                <span class="am-input-group-btn">
+            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="button"></button>
+          </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
+                                            <th class="table-id">ID</th>
+											<th class="table-author am-hide-sm-only">平台订单号</th>
+											<th class="table-author am-hide-sm-only">商户订单号</th>
+                                            <th class="table-title">用户名</th>
+											<th class="table-title">金额</th>
+											<th class="table-title">手续费</th>
+                                            <th class="table-type">时间</th>
+											<th class="table-type">状态</th>
+                                            <th class="table-set">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dxty">
+									{volist name="li" id="k"}
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td>{$k.id}</td>
+                                            <td>{$k.out_trade_no}</td>
+											<td>{$k.order}</td>
+                                            <td>{$k.uid}</td>
+											<td>{$k.money}</td>
+                                            <td class="am-hide-sm-only">{$k.fl}</td>
+                                            <td class="am-hide-sm-only">{$k.addtime}</td>
+											 <td class="am-hide-sm-only">{switch name="k.status"}{case value="0"}未成功{/case}{case value="1"}提现成功{/case}{/switch}</td>
+
+                                            <td>
+                                                <div class="am-btn-toolbar">
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        {eq name="k.status" value="0"}
+														<em style="background:#FFF;" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 通过</em>
+                                                        {else/}
+														<em style="background:#FFF;pointer-events: none;color:#ccc" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o" style="color:#ccc"></span> 通过</em>
+                                                  {/eq}
+                                                        <em style="background:#FFF" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</em>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                       {/volist}
+                                    </tbody>
+                                </table>
+                                <div class="am-cf">
+
+                                    <div class="am-fr">
+									{$li->render()}
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+               
+     </div>
+	 </div>
+    </div>
+{include file="foot" /}
+	
+	<script>
+	$(function(){
+	$("#oneurl").show();
+	$("#fnews").addClass("active");
+	})
+	
+	$("#sel").change(function(){
+	var p=$(this).val();
+	var url="{:U('systemy/withdraw')}";
+	urll=url+"?page=1&id="+p;
+	window.location.href=urll;
+	})
+	$(function(){
+	
+		$(".am-btn-toolbar").find("em:first").click(function(){
+		  var uid=$(this).parent().parent().parent().parent().find("#uid").attr('usid');
+		  $.post("{:U('gloabl/addwi')}",{id:uid,t:1},function(e){
+		   alert(e.msg);
+		   window.location.reload();
+		  })
+		})
+		$(".am-btn-toolbar").find("em:first").next().click(function(){
+		  var uid=$(this).parent().parent().parent().parent().find("#uid").attr('usid');
+		  $.post("{:U('gloabl/addwi')}",{id:uid,t:2},function(e){
+		   alert(e.msg);
+		   window.location.reload();
+		  })
+		})		
+		$(".am-btn-toolbar").find("em:first").next().next().click(function(){
+		var p=$(this).parent().parent().parent().parent();
+		var uid=p.find("#uid").attr('usid');
+		$.post("{:U('gloabl/delwi')}",{id:uid},function(e){
+		   p.remove();
+		   alert(e.msg);
+		   window.location.reload();
+         });
+		})
+		
+		
+		})
+	
+	</script>

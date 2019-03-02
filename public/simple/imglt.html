@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{:C('system.web_name')}</title>
+    <meta name="description" content="{:C('system.web_key')}">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/public/simple/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/public/simple/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/public/simple/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/public/simple/assets/css/admin.css">
+    <link rel="stylesheet" href="/public/simple/assets/css/app.css">
+	<style>
+ul.imglist{ margin:0 auto; width:100%; overflow:hidden} 
+ul.imglist li{float:left; margin:8px; padding:4px 8px; width:130px;list-style-type:none;border: 1px solid #e2e2e2;box-shadow: 1px 2px 5px #888888;} 
+ul.imglist li img{ display:block; width:100%; height:160px} 
+ul.imglist li span{ display:block; width:100%; height:30px; line-height:30px; background:#F6F6F6;text-align:center}
+ul.imglist li span:last-child{background:#c5c5c5;color:red;cursor:pointer}
+.fanhui{text-align:center;display:inline-block;float:right;border: 1px solid #70ddff;width:80px;margin-top: -5px;color:#FFF;padding:3px;background:#23b7e5;box-shadow: 1px 2px 5px #888888;}
+</style>
+</head>
+<body data-type="generalComponents">
+    {include file="left" /}
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                {:C('system.web_name')}-系统管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="javascript:void(0)" class="am-icon-home">首页</a></li>
+                <li><a href="javascript:void(0)">二维码管理</a></li>
+                <li class="am-active">目录列表</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> {$up.type}账号<span style="color:red;margin-left:5px;margin-right:5px">{$up.account}</span>{empty name="g.ty"}下目录列表{else/}下<span style="color:red;margin-left:5px;margin-right:5px">{$g.ty}</span>元二维码列表{/empty}
+                    <span class="am-icon-code" id="fanh" style="margin-left:900px">返回上一页</span>
+					</div>
+                    
+                </div>
+                <div class="tpl-block">
+                   
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                     <ul class="imglist">
+									  {volist name="t" id="k"}
+									  {if condition="count(explode('.',$k))==1"}
+										<li><a href="{:U('ewm/imglt',array('id'=>$g['id'],'ty'=>$k))}" target="_self">
+									   <img src="/public/images/234611-13022019245753.jpg" /></a>
+									   <span >{$k}</span>
+									   <span >删除</span>
+									   </li>
+									  {else/}	  
+									   <li><a href="javascript:void(0)" target="_self">
+									   <img src="/public/ziyuan/1003/{$g.id}/{$g.ty}/{$k}" /></a>
+									   <span >{$k}</span>
+									   <span >删除</span>
+									   </li>
+									 {/if}
+									  {/volist}
+									  {empty name="g.ty"}
+									   <li style="height:230px;background:#d0d0d075"><a href="javascript:void(0)" onclick="tj({$g.id})" style="width:100%;color:#b7b7b7">
+									   <img src="/public/simple/assets/img/jia.png" style="width:100px;height:100px;margin-top: 45%;"></a>
+									   </li>
+									   {else/}
+									   <li style="height:230px;background:#d0d0d075"><a href="javascript:void(0)" onclick="tjimg({$g.id},{$g.ty})" style="width:100%;color:#b7b7b7">
+									   <img src="/public/simple/assets/img/jia.png" style="width:100px;height:100px;margin-top: 45%;"></a>
+									   </li>
+									   {/empty}
+									 <ul>
+                                </table>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+               
+			   <div  id="divform" style="position:fixed;z-index:9999;top:0px;height:100%;width:100%;left:0px;background:rgba(197, 197, 197, 0.53);display:none"><div class="tpl-portlet-components" style="margin:auto;width:70%;margin-top:100px">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 添加目录
+                    </div>
+                </div>
+                <div class="tpl-block " >
+
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 am-u-md-9">
+                            <form class="am-form am-form-horizontal" >
+								<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">目录金额</label>
+                                    <div class="am-u-sm-9">
+									   <input type="hidden" name="mul" id="user-name" value="" >
+                                        <input type="text" name="money" id="user-name" value="" placeholder="输入数字，例如1000的金额目录输入1000">
+                                        
+                                    </div>
+                                </div>
+								
+                               
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button" id="bc" class="am-btn am-btn-primary">添加</button>&nbsp;&nbsp;&nbsp;<button type="button" id="clo" class="am-btn am-btn-primary">关&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;闭</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div></div>
+            </div>
+
+    </div>
+    <script src="/public/simple/assets/js/jquery.min.js"></script>
+    <script src="/public/simple/assets/js/amazeui.min.js"></script>
+    <script src="/public/simple/assets/js/app.js"></script>
+	
+	<script>
+	$(function(){
+	$("#ewmurl").show();
+	$("#ewm").addClass("active");
+	})
+	$("#fanh").click(function(){
+	window.history.back(-1);
+	})
+	function tj(q){
+	  $("input[name=mul]").val(q);
+	  $("#divform").show();
+	}
+	function tjimg(a,b){
+	 window.location.href="/simple/ewm/imgup.html?id="+a+"&ty="+b;
+	}
+	$("#clo").click(function(){
+	 $("input[name=money]").val("");
+	 $("#divform").hide(1000);
+	})
+	$("#bc").click(function(){
+		var id=$("input[name=mul]").val();
+		var m=$("input[name=money]").val();
+		$.post("{:U('gloabl/addml')}",{ml:m,pid:id},function(e){
+		if(e.code==0){
+		 $("#divform").hide(1000);
+		 location.reload();
+		}
+		  alert(e.msg);
+		})
+	})
+	$(".imglist li").each(function(){
+	  var p=$(this);
+	  $(this).children("span:last-child").click(function(){
+	   var k=$(this).prev().text();
+	   if(k.indexOf(".") != -1){
+		 var url=$(this).parent().find('img').attr("src");
+		}else{
+		 var url="/public/ziyuan/1003/{$g.id}/"+k+"/";
+		}
+	   if (confirm("此操作无法恢复。你确定删除吗？")==true){
+			$.post("{:U('gloabl/qdel')}",{id:url},function(d){
+				  if(d.code==0){
+				   location.reload();
+				   
+				  }else{
+					alert("文件不存在");
+				  }
+				 });
+				}
+		});
+	});
+
+	
+	</script>
+</body>
+
+</html>

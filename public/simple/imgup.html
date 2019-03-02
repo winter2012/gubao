@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{:C('system.web_name')}</title>
+    <meta name="description" content="{:C('system.web_key')}">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/public/simple/assets/i/favicon.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/public/simple/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/public/simple/assets/css/admin.css">
+    <link rel="stylesheet" href="/public/simple/assets/css/app.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/webuploader.css" />
+	 <script src="/public/js/jquery-2.2.3.min.js"></script>
+    <script src="/public/simple/assets/js/webuploader.js"></script>
+    <script src="/public/simple/assets/js/webuploader.min.js"></script>
+</head>
+<body data-type="generalComponents">
+    {include file="left" /}
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                {:C('system.web_name')}-二维码管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="javascript:void(0)" class="am-icon-home">首页</a></li>
+                <li><a href="javascript:void(0)">二维码管理</a></li>
+                <li class="am-active">上传主图</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> {$up.type}账号<span style="color:red;margin-left:5px;margin-right:5px">{$up.account}</span>{empty name="g.ty"}主图上传{else/}下<span style="color:red;margin-left:5px;margin-right:5px">{$g.ty}</span>元二维码上传{/empty}
+                    <span class="am-icon-code" id="fanh" style="margin-left:900px">返回上一页</span>
+					</div>
+                    <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                   <!--<button type="button" id="addpid" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
+                                     <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
+                                    <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-form-group">
+                                <!--<select data-am-selected="{btnSize: 'sm'}" id="sel">
+              <option value="-1">所有类别</option>
+              <option value="0">状态失败</option>
+              <option value="1">充值成功</option>
+            </select>-->
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <div class="tpl-block " >
+
+                    <div class="am-g tpl-amazeui-form">
+					<input type="hidden" value="{$up.id}" id="idimg">
+					<input type="hidden" value="{$up->getData('type')}" id="tymg">
+					<input type="hidden" value="{$g.ty}" id="ty">
+                        <div class="am-u-sm-12 am-u-md-9" style="width:100%">
+                            <div class="uploader-list-container" >
+							   <input type="hidden" class="imgfirst" name="imgfirst">
+							   <div class="queueList">
+								  <div id="dndArea" class="placeholder">
+									 <div id="filePicker-2"></div>
+									 <p>或将照片拖到这里，单次最多可选5张</p>
+								  </div>
+							   </div>
+							   <div class="statusBar" style="display:none;">
+								  <div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
+								  <div class="info"></div>
+								  <div class="btns">
+									 <div id="filePicker2"></div>
+									 <div class="uploadBtn">开始上传</div>
+								  </div>
+							   </div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+                        </div>
+
+                    </div>
+                </div>
+
+    </div>
+	<script src="/public/simple/assets/js/upda.js?v=20"></script>	
+	<script>
+	
+	
+	$(function(){
+	$("#ewmurl").show();
+	$("#ewm").addClass("active");
+	})
+	$("#fanh").click(function(){
+	window.history.back(-1);
+	})
+	</script>
+</body>
+
+</html>
